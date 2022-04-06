@@ -1,0 +1,8 @@
+{
+  "name": "Field Service",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "b82a6b5b"
+}
