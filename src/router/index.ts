@@ -1,20 +1,23 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue'
+import Auth from '@/pages/auth/AuthPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/auth'
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
+    path: '/auth',
+    component: Auth,
   },
   {
-    path: '/message/:id',
-    component: () => import('../views/ViewMessagePage.vue')
+    path: '/auth/forgotpassword',
+    component: () => import('@/pages/auth/ForgotPasswordPage.vue')
+  },
+  {
+    path: '/auth/resetpassword',
+    component: () => import('@/pages/auth/ResetPasswordPage.vue')
   }
 ]
 
