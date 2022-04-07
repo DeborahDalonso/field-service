@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
 import Auth from '@/pages/auth/AuthPage.vue';
+import TabsPage from '@/pages/westrock/OsTabsPage.vue';
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
   {
     path: '/',
     redirect: '/auth'
@@ -18,6 +18,40 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/auth/resetpassword',
     component: () => import('@/pages/auth/ResetPasswordPage.vue')
+  },
+  {
+    path: '/home',
+    component: () => import('@/pages/westrock/HomePage.vue')
+  },
+  {
+    path: '/schedules',
+    component: () => import('@/pages/westrock/SchedulesPage.vue')
+  },
+  {
+    path: '/teste',
+    component: () => import('@/pages/westrock/TesteComponentsPage.vue')
+  },
+  {
+    path: '/os/',
+    component: TabsPage,
+    children: [
+      {
+        path: '',
+        redirect: '/os/servicestatus'
+      },
+      {
+        path: 'servicestatus',
+        component: () => import('@/pages/westrock/ostabs/ServiceStatus.vue')
+      },
+      {
+        path: 'photogallery',
+        component: () => import('@/pages/westrock/ostabs/PhotoGallery.vue')
+      },
+      {
+        path: 'report',
+        component: () => import('@/pages/westrock/ostabs/ReportService.vue')
+      }
+    ]
   }
 ]
 
