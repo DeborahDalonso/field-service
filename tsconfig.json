@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/data/machineslist.js"  ],
   "exclude": [
     "node_modules"
   ]

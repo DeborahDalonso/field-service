@@ -50,6 +50,14 @@ const routes = [
       {
         path: 'report',
         component: () => import('@/pages/westrock/ostabs/ReportService.vue')
+      },
+      {
+        path: 'parts',
+        component: () => import('@/pages/westrock/ostabs/parts/UsedParts.vue')
+      },
+      {
+        path: 'checklist',
+        component: () => import('@/pages/westrock/ostabs/ChecklistMachine.vue')
       }
     ]
   }

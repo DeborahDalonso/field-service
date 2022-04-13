@@ -18,13 +18,13 @@
         <ion-item>
           <ion-icon slot="start" :icon="moon"></ion-icon>
           <ion-label> Dark Mode </ion-label>
-          <ion-toggle
+          <!-- <ion-toggle
             slot="end"
             @ionChange="checked.value = !checked.value"
             value="mushrooms"
             :checked="checked"
           >
-          </ion-toggle>
+          </ion-toggle> -->
         </ion-item>
       </ion-list>
     </ion-footer>

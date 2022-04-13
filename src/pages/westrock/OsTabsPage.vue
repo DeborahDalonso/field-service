@@ -20,7 +20,8 @@ import {
   IonPage,
   IonRouterOutlet,
 } from "@ionic/vue";
-import { images, flag } from "ionicons/icons";
+
+import { images, flag, checkbox, documentText, build } from "ionicons/icons";
 
 export default {
   name: "TabsPage",
@@ -48,10 +49,21 @@ export default {
           href: "/os/photogallery",
         },
         {
-          icon: images,
+          icon: documentText,
           tab: "report",
           href: "/os/report",
         },
+        {
+          icon: build,
+          tab: "parts",
+          href: "/os/parts",
+        },
+        {
+          icon: checkbox,
+          tab: "checklist",
+          href: "/os/checklist",
+        },
+        
       ],
     };
   },
