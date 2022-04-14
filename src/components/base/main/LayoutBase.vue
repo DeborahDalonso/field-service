@@ -10,7 +10,7 @@
         <ion-title>{{ pageTitle }}</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content fullscreen>
       <slot />
     </ion-content>
   </ion-page>

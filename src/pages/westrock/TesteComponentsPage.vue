@@ -1,53 +1,100 @@
 <template>
-  <layout-base>
-    <ion-list v-show="countParts">
-      <ion-item v-for="part in selectedParts" :key="part.id">
-        <ion-label>{{ part.name }}</ion-label>
-        <ion-badge color="primary">{{ part.value }}</ion-badge>
-      </ion-item>
-    </ion-list>
-    <ion-button @click="openModal">Open Modal</ion-button>
-  </layout-base>
+<layout-base>
+  <ion-header translucent>
+        <ion-toolbar>
+          <ion-title>Note</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content fullscreen>
+        <ion-list>
+          <ion-list-header>Basic</ion-list-header>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-note>Default</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="primary">Primary</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="secondary">Secondary</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="tertiary">Tertiary</ion-note>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-note color="success">Success</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="warning">warning</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="danger">Danger</ion-note>
+              </ion-col>
+              <ion-col>
+                <ion-note color="dark">Dark</ion-note>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-list-header>List Notes</ion-list-header>
+          <ion-item>
+            <ion-label>Default</ion-label>
+            <ion-note slot="end">11</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Primary</ion-label>
+            <ion-note slot="end" color="primary">22</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Secondary</ion-label>
+            <ion-note slot="end" color="secondary">33</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Tertiary</ion-label>
+            <ion-note slot="end" color="tertiary">44</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Success</ion-label>
+            <ion-note slot="start" color="success">55</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Warning</ion-label>
+            <ion-note slot="start" color="warning">66</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Danger</ion-label>
+            <ion-note slot="start" color="danger">77</ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Dark</ion-label>
+            <ion-note slot="start" color="dark">88</ion-note>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+</layout-base>
 </template>
 
 <script>
-import { IonButton, modalController } from "@ionic/vue";
-import Modal from "@/pages/westrock/ostabs/parts/ModalParts.vue";
-import { parts } from "@/data/partslist";
+import { defineComponent } from 'vue';
 
-export default {
-  components: { IonButton },
-  data() {
+export default defineComponent({
+  setup() {
     return {
-      parts,
-      countParts: false,
-    };
-  },
-  methods: {
-    async openModal() {
-      const modal = await modalController.create({
-        component: Modal,
-        cssClass: "my-custom-class",
-        breakpoints: [0, 0.3, 0.5, 0.8],
-        initialBreakpoint: 0.8,
-      });
-      return modal.present();
-    },
-  },
-  computed: {
-    selectedParts() {
-      var list = [];
-      const show = () => {
-        this.countParts = true;
-      };
-      this.parts.map(function (part) {
-        if (part.value > 0) {
-          list.push(part);
-          show();
-        }
-      });
-      return list;
-    },
-  },
-};
+      enableBackdropDismiss: true,
+      showBackdrop: true,
+      shouldPropagate: true
+    }
+  }
+});
 </script>

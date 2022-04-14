@@ -1,7 +1,12 @@
 <template>
   <layout-base>
     <ion-list v-show="countParts">
-      <ion-item v-for="part in selectedParts" :key="part.id">
+      <ion-item
+        button
+        v-for="part in selectedParts"
+        :key="part.id"
+        @click="showSheets(part.id, part.name, part.value)"
+      >
         <ion-label text-wrap>{{ part.name }}</ion-label>
         <ion-badge color="primary">{{ part.value }}</ion-badge>
       </ion-item>
@@ -29,10 +34,13 @@ import {
   IonFabButton,
   IonIcon,
   modalController,
+  actionSheetController,
 } from "@ionic/vue";
 import Modal from "@/pages/westrock/ostabs/parts/ModalParts.vue";
+import ModalEdit from "@/pages/westrock/ostabs/parts/ModalEditParts.vue";
+
 import { parts } from "@/data/partslist";
-import { add } from "ionicons/icons";
+import { add, trash, close, pencil } from "ionicons/icons";
 
 export default {
   components: {
@@ -42,7 +50,7 @@ export default {
     IonBadge,
     IonFab,
     IonFabButton,
-    IonIcon
+    IonIcon,
   },
   data() {
     return {
@@ -61,6 +69,45 @@ export default {
       });
       return modal.present();
     },
+
+    async showSheets(id, name, value) {
+      const actionSheet = await actionSheetController.create({
+        buttons: [
+          {
+            text: "Excluir",
+            icon: trash,
+            handler: () => {
+              const found = this.parts.find((part) => part.id === id);
+              found.value = 0;
+            },
+          },
+          {
+            text: "Editar",
+            icon: pencil,
+            handler: async () => {
+              const modalEdit = await modalController.create({
+                component: ModalEdit,
+                cssClass: "my-custom-class",
+                breakpoints: [0, 0.25],
+                initialBreakpoint: 0.25,
+                componentProps: {
+                  id: id,
+                  name: name,
+                  value: value
+                },
+              });
+              return modalEdit.present();
+            },
+          },
+          {
+            text: "Cancelar",
+            role: "cancel",
+            icon: close,
+          },
+        ],
+      });
+      await actionSheet.present();
+    },
   },
   computed: {
     selectedParts() {
@@ -77,6 +124,7 @@ export default {
       if (list.length === 0) {
         show(false);
       }
+      console.log(list);
       return list;
     },
   },

@@ -108,7 +108,7 @@ export default {
         };
         this.parts.map(function (part) {
           var result = percent(part.name);
-          var data = { score: result, id: part.id, name: part.name };
+          var data = { score: result, id: part.id, name: part.name, value: part.value };
           if (result > 0) {
             scores.push(data);
           }
