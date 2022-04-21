@@ -50,6 +50,18 @@ export default {
           url: "/schedules",
         },
         {
+          title: "Peças",
+          url: "/partsinventory",
+        },
+        {
+          title: "Criar apontamento de visita",
+          url: "/startservice",
+        },
+        {
+          title: "Inventário de equipamento",
+          url: "/equipmentinventory",
+        },
+        {
           title: "OS",
           url: "/os/servicestatus",
         },

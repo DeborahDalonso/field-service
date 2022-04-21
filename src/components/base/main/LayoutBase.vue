@@ -27,11 +27,12 @@ import {
   IonToolbar,
   IonButtons,
   IonButton,
+  // IonBackButton,
   menuController,
 } from "@ionic/vue";
 
 export default {
-  props: ["pageTitle", "pageDefault"],
+  props: ["pageTitle"],
   components: {
     IonPage,
     IonHeader,
@@ -40,6 +41,7 @@ export default {
     IonToolbar,
     IonButtons,
     IonButton,
+      // IonBackButton,
   },
   data() {
     return { menu };

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Auth from '@/pages/auth/AuthPage.vue';
 import TabsPage from '@/pages/westrock/OsTabsPage.vue';
+import Rotinha from '@/pages/westrock/TesteComponentsPage.vue';
 
 const routes = [
   {
@@ -26,6 +27,22 @@ const routes = [
   {
     path: '/schedules',
     component: () => import('@/pages/westrock/SchedulesPage.vue')
+  },
+  {
+    path: '/partsinventory',
+    component: () => import('@/pages/westrock/PartsInventory.vue')
+  },
+  {
+    path: '/startservice',
+    component: () => import('@/pages/westrock/StartService.vue')
+  },
+  {
+    path: '/equipmentinventory',
+    component: () => import('@/pages/westrock/EquipmentInventory.vue')
+  },
+  {
+    path: '/equipmentinventory/transferpart',
+    component: () => import('@/pages/westrock/TransferPart.vue')
   },
   {
     path: '/teste',
@@ -54,6 +71,10 @@ const routes = [
       {
         path: 'parts',
         component: () => import('@/pages/westrock/ostabs/parts/UsedParts.vue')
+      },
+      {
+        path: 'map',
+        component: () => import('@/pages/westrock/ostabs/MapTeste.vue')
       },
       {
         path: 'checklist',

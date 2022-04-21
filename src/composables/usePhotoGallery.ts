@@ -2,9 +2,10 @@ import { ref, onMounted, watch } from 'vue';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@capacitor/storage';
-import { isPlatform, actionSheetController } from '@ionic/vue';
+import { isPlatform, actionSheetController, modalController } from '@ionic/vue';
 import { Capacitor } from '@capacitor/core';
 import { trash, close } from 'ionicons/icons';
+import Modal from '@/pages/westrock/ostabs/PhotoDescriptionModal.vue';
 
 
 export interface UserPhoto {
@@ -17,14 +18,14 @@ export function usePhotoGallery() {
     const photos = ref<UserPhoto[]>([]);
 
     const convertBlobToBase64 = (blob: Blob) =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onerror = reject;
-        reader.onload = () => {
-            resolve(reader.result);
-        };
-        reader.readAsDataURL(blob);
-    });
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onerror = reject;
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.readAsDataURL(blob);
+        });
 
     const savePicture = async (photo: Photo, fileName: string): Promise<UserPhoto> => {
         let base64Data: string;
@@ -124,6 +125,65 @@ export function usePhotoGallery() {
     };
     onMounted(loadSaved);
 
+    customElements.define(
+        'modal-content',
+        class ModalContent extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `
+          <ion-header translucent>
+            <ion-toolbar>
+              <ion-title>Modal Content</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="dismissModal()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content fullscreen>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="./avatar-gollum.jpg"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Gollum</h2>
+                  <p>Sneaky little hobbitses!</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="./avatar-frodo.jpg"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Frodo</h2>
+                  <p>Go back, Sam! I'm going to Mordor alone!</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="./avatar-samwise.jpg"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Samwise</h2>
+                  <p>What we need is a few good taters.</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        `;
+          }
+        }
+      );
+
+    const addDescription = async () => {
+        const modal = await modalController.create({
+            component: Modal,
+            cssClass: "my-custom-class",
+            breakpoints: [0, 0.3],
+            initialBreakpoint: 0.3,
+        });
+        await modal.present();
+    }
+
     const takePhoto = async () => {
 
         const photo = await Camera.getPhoto({
@@ -145,11 +205,14 @@ export function usePhotoGallery() {
             resultType: CameraResultType.Uri,
             source: CameraSource.Photos,
             quality: 100,
-            allowEditing: false
+            allowEditing: false 
         });
 
         const fileName = new Date().getTime() + '.jpeg';
 
+        const description = await addDescription();
+
+        
         const savedFileImage = await savePicture(photo, fileName);
 
         photos.value = [savedFileImage, ...photos.value];

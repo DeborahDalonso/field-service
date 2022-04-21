@@ -1,100 +1,52 @@
 <template>
 <layout-base>
-  <ion-header translucent>
-        <ion-toolbar>
-          <ion-title>Note</ion-title>
-        </ion-toolbar>
-      </ion-header>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Single Selection
+      </ion-label>
+    </ion-list-header>
 
-      <ion-content fullscreen>
-        <ion-list>
-          <ion-list-header>Basic</ion-list-header>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-note>Default</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="primary">Primary</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="secondary">Secondary</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="tertiary">Tertiary</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-note color="success">Success</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="warning">warning</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="danger">Danger</ion-note>
-              </ion-col>
-              <ion-col>
-                <ion-note color="dark">Dark</ion-note>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-          <ion-list-header>List Notes</ion-list-header>
-          <ion-item>
-            <ion-label>Default</ion-label>
-            <ion-note slot="end">11</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Primary</ion-label>
-            <ion-note slot="end" color="primary">22</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Secondary</ion-label>
-            <ion-note slot="end" color="secondary">33</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Tertiary</ion-label>
-            <ion-note slot="end" color="tertiary">44</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Success</ion-label>
-            <ion-note slot="start" color="success">55</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Warning</ion-label>
-            <ion-note slot="start" color="warning">66</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Danger</ion-label>
-            <ion-note slot="start" color="danger">77</ion-note>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Dark</ion-label>
-            <ion-note slot="start" color="dark">88</ion-note>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-</layout-base>
+    <ion-item>
+      <ion-label>Hair Color</ion-label>
+      <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss">
+        <ion-select-option value="brown">Brown</ion-select-option>
+        <ion-select-option value="blonde">Blonde</ion-select-option>
+        <ion-select-option value="black">Black</ion-select-option>
+        <ion-select-option value="red">Red</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</layout-base>  
 </template>
 
 <script>
+import { 
+  IonItem, 
+  IonLabel, 
+  IonList,
+  IonListHeader,
+  IonSelect,
+  IonSelectOption
+} from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  setup() {
-    return {
-      enableBackdropDismiss: true,
-      showBackdrop: true,
-      shouldPropagate: true
-    }
+  components: {
+    IonItem, 
+    IonLabel, 
+    IonList,
+    IonListHeader,
+    IonSelect,
+    IonSelectOption
   }
 });
 </script>
