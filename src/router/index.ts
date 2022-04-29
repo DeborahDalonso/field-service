@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Auth from '@/pages/auth/AuthPage.vue';
 import TabsPage from '@/pages/westrock/OsTabsPage.vue';
-import Rotinha from '@/pages/westrock/TesteComponentsPage.vue';
 
 const routes = [
   {
@@ -88,5 +87,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router

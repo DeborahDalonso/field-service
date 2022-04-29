@@ -5,7 +5,7 @@
       <ion-input :type="item.type" />
     </ion-item>
   </ion-list>
-  <ion-button v-for="button in buttons" :key="button" :router-link="button.url" expand="full">{{ button.title }}</ion-button>
+  <ion-button v-for="button in buttons" :key="button" expand="full">{{ button.title }}</ion-button>
 </template>
 
 <script>

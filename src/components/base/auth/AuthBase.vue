@@ -3,7 +3,7 @@
     <ion-content>
       <ion-grid>
         <ion-row>
-          <form class="ion-padding">
+          <form class="ion-padding" @submit.prevent="login">
             <ion-img src="../assets/img/logo.png"></ion-img>
             <slot />
           </form>
@@ -17,13 +17,32 @@
 import { IonPage, IonRow, IonGrid, IonContent, IonImg } from "@ionic/vue";
 
 export default {
+  // props: ["action"],
+
   components: {
     IonPage,
     IonRow,
     IonGrid,
     IonContent,
-    IonImg
+    IonImg,
   },
+   methods:{
+    login() {
+      var formData =  new formData();
+
+      formData.append("email", "app");
+      formData.append("password", "admin");
+
+      fetch("http://localhost:8000/api/token", {
+        method: "POST",
+        body: formData
+      }).then((response) => response.json()).then(function (result) {
+        localStorage.token = result.token;
+        console.log(localStorage);
+      })
+
+    }
+  }
 };
 </script>
 
